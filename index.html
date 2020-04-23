@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Covid-19 QR Code back to the future POC</title>
+		<script type="text/javascript" src="qrcode.min.js"></script>
+	</head>
+	<body>
+		<table>
+			<tr><td>Nom: </td><td style="width: 300px"><input style="width: 100%" id="nom" value="Dupont"/></td></tr>
+			<tr><td>Prénom: </td><td style="width: 300px"><input style="width: 100%" id="prenom" value="Jean"/></td></tr>
+			<tr><td>Né le </td><td style="width: 300px"><input style="width: 100%" id="naissance" value="01/01/1970"/></td></tr>
+			<tr><td>à </td><td style="width: 300px"><input style="width: 100%" id="lieu" value="Lyon"/></td></tr>
+			<tr><td>Adresse: </td><td style="width: 300px"><input style="width: 100%" id="adresse" value="1 avenue Charles de Gaulle"/></td></tr>
+			<tr><td>Ville: </td><td style="width: 300px"><input style="width: 100%" id="ville" value="Lyon"/></td></tr>
+			<tr><td>Code postal: </td><td style="width: 300px"><input style="width: 100%" id="cp" value="69001"/></td></tr>
+			<tr><td colspan="2"><a href="#" onclick="qrcode.makeCode(getText(new Date(new Date().getTime()-600000)));">Retour vers le futur !</a></td></tr>
+		</table>
+		<div id="qrcode" style="width:500px; height:500px; margin-top:15px;"></div>
+		<script type="text/javascript">
+			var qrcode = new QRCode(document.getElementById("qrcode"), {width : 500, height : 500, correctLevel : QRCode.CorrectLevel.M});
+			var getValue = input => document.getElementById(input).value;
+			var getNumber = n => ('0'+n).substr(-2);
+			var getDateTime = dt => `${getNumber(dt.getDate())}/${getNumber(dt.getMonth()+1)}/${dt.getFullYear()} a ${getNumber(dt.getHours())}h${getNumber(dt.getMinutes())}`;
+			var getText = past => `Cree le: ${getDateTime(past)}; Nom: ${getValue('nom')}; Prenom: ${getValue('prenom')}; Naissance: ${getValue('naissance')} a ${getValue('lieu')}; Adresse: ${getValue('adresse')} ${getValue('cp')} ${getValue('ville')}; Sortie: ${getDateTime(past)}; Motifs: courses`;
+		</script>
+	</body>
+</html>
