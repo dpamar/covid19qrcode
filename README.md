@@ -5,6 +5,8 @@ Il utilise la librairie QRCode.js
 
 Ce projet, comme cette librairie, sont sous licence MIT.
 
+Le test live est disponible [ici](https://dpamar.github.io/covid19qrcode/index.html)
+
 ## Important
 Restez chez vous !
 
